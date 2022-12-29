@@ -20,4 +20,12 @@ router.post('/', (req, res) => {
   res.send(`User with the name ${user.firstName} added to the database!`);
 });
 
+// Getting user by their id
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  
+  const foundUser = users.find((user) => user.id === id);
+  res.send(foundUser);
+})
+
 export default router;

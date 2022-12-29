@@ -36,4 +36,24 @@ router.delete('/:id', (req, res) => {
   res.send(`User with the id ${id} deleted from the data base!`);
 });
 
+// Patch is used for partial updation while put is used to compltely change in tha data base
+router.patch('/:id', (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, Age } = req.body;
+
+  const userToBeUpdated = users.find((user) => user.id === id);
+
+  if (firstName) {
+    userToBeUpdated.firstName = firstName;
+  }
+  if (lastName) {
+    userToBeUpdated.lastName = lastName;
+  }
+  if (Age) {
+    userToBeUpdated.Age = Age;
+  }
+
+  res.send(`User with the id ${id} has been updated!`);
+});
+
 export default router;
